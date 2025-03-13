@@ -14,6 +14,7 @@ contract BoxV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable{
         _disableInitializers();
     }
 
+    // constructor for proxy
     function initialize() public initializer {
         __Ownable_init(msg.sender); //sets owner to msg.sender
         __UUPSUpgradeable_init(); //Do nothing but convention
@@ -28,5 +29,5 @@ contract BoxV1 is Initializable, OwnableUpgradeable, UUPSUpgradeable{
         return 1;
     }
 
-    function _authorizeUpgrade(address newImplementation) internal override  {}
+    function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 }
